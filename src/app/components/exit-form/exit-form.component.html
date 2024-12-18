@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <h2>Crear Salida</h2>
+    <form (ngSubmit)="saveExit()">
+      <div class="mb-3">
+        <label for="product" class="form-label">Producto</label>
+        <select
+          id="product"
+          class="form-select"
+          [(ngModel)]="exit.product"
+          name="product"
+          required
+        >
+          <option *ngFor="let product of products" [ngValue]="product">
+            {{ product.name }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Cantidad</label>
+        <input
+          type="number"
+          id="quantity"
+          class="form-control"
+          [(ngModel)]="exit.quantity"
+          name="quantity"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <a class="btn btn-secondary" routerLink="/exits">Cancelar</a>
+    </form>
+  </div>
+  

@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <h2>Lista de Salidas</h2>
+    <a class="btn btn-primary mb-3" routerLink="/exits/new">Crear Salida</a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Fecha</th>
+          <!--<th>Acciones</th>-->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exit of exits">
+          <td>{{ exit.id }}</td>
+          <td>{{ exit.product.name }}</td>
+          <td>{{ exit.quantity }}</td>
+          <td>{{ exit.date | date: 'short' }}</td>
+          <td>
+            <!--
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteExit(exit.id!)"
+            >
+              Eliminar
+            </button>
+        -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

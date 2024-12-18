@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <h2>Lista de Proveedores</h2>
+    <a class="btn btn-primary mb-3" routerLink="/suppliers/new">Crear Proveedor</a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Contacto</th>
+          <th>Dirección</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let supplier of suppliers">
+          <td>{{ supplier.id }}</td>
+          <td>{{ supplier.name }}</td>
+          <td>{{ supplier.contact }}</td>
+          <td>{{ supplier.address }}</td>
+          <td>
+            <a class="btn btn-warning btn-sm" [routerLink]="['/suppliers/edit', supplier.id]">Editar</a>
+            <button class="btn btn-danger btn-sm" (click)="deleteSupplier(supplier.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

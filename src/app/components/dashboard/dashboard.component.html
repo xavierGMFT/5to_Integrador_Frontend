@@ -1,0 +1,38 @@
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-dark border-right d-flex flex-column" id="sidebar-wrapper">
+      <div class="sidebar-heading text-white text-center py-3">
+        <h5>STOCKMANAGER</h5>
+      </div>
+      <div class="list-group list-group-flush flex-grow-1">
+        <a routerLink="/products" class="list-group-item list-group-item-action bg-dark text-white">
+          <i class="bi bi-box"></i> Productos
+        </a>
+        <a routerLink="/suppliers" class="list-group-item list-group-item-action bg-dark text-white">
+          <i class="bi bi-people"></i> Proveedores
+        </a>
+        <a routerLink="/entries" class="list-group-item list-group-item-action bg-dark text-white">
+          <i class="bi bi-arrow-down-circle"></i> Entradas
+        </a>
+        <a routerLink="/exits" class="list-group-item list-group-item-action bg-dark text-white">
+          <i class="bi bi-arrow-up-circle"></i> Salidas
+        </a>
+      </div>
+  
+      <!-- Texto al final -->
+      <div class="text-white text-center p-3 mt-auto">
+        <small>©ALEJANDRO & BRYAN</small>
+      </div>
+    </div>
+  
+    <!-- Page Content -->
+    <div id="page-content-wrapper" class="w-100">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <!--<button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>-->
+      </nav>
+      <div class="container-fluid mt-3">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  

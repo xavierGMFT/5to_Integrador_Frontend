@@ -1,0 +1,28 @@
+/* Wrapper */
+#wrapper {
+    display: flex;
+    width: 100%;
+  }
+  
+  /* Sidebar */
+  #sidebar-wrapper {
+    width: 250px;
+    height: 100vh;
+  }
+  
+  .list-group-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: #495057;
+    color: white;
+  }
+  
+  /* Page Content */
+  #page-content-wrapper {
+    flex: 1;
+    overflow-x: hidden;
+  }
+  

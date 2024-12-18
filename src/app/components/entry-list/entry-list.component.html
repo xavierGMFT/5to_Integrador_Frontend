@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <h2>Lista de Entradas</h2>
+    <a class="btn btn-primary mb-3" routerLink="/entries/new">Crear Entrada</a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Proveedor</th>
+          <th>Cantidad</th>
+          <th>Fecha</th>
+          <!--<th>Acciones</th>-->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of entries">
+          <td>{{ entry.id }}</td>
+          <td>{{ entry.product.name }}</td>
+          <td>{{ entry.supplier.name }}</td>
+          <td>{{ entry.quantity }}</td>
+          <td>{{ entry.date | date: 'short' }}</td>
+          <td>
+            <!-- 
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteEntry(entry.id)"
+            >
+              Eliminar
+            </button>
+            -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
