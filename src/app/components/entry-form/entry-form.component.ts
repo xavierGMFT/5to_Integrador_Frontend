@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Entry, EntryService } from '../../services/entry.service';
 import { Product, ProductService } from '../../services/product.service';
 import { Supplier, SupplierService } from '../../services/supplier.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-entry-form',
@@ -39,8 +40,14 @@ export class EntryFormComponent implements OnInit {
 
   saveEntry(): void {
     if (this.entry.product && this.entry.supplier && this.entry.quantity) {
-      this.entryService.createEntry(this.entry as Entry).subscribe(() => {
-        this.router.navigate(['/entries']);
+      this.entryService.createEntry(this.entry as Entry).subscribe({
+        next: () => {
+          Swal.fire('Creado', 'La entrada ha sido registrada correctamente.', 'success');
+          this.router.navigate(['/entries']);
+        },
+        error: () => {
+          Swal.fire('Error', 'No se pudo registrar la entrada.', 'error');
+        },
       });
     }
   }

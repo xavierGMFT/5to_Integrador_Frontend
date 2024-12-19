@@ -1,0 +1,16 @@
+.alert {
+    transition: all 0.5s ease-in-out;
+  }
+  table.table-dark {
+    border-color: #444; /* Color del borde */
+  }
+  
+  table.table-dark th,
+  table.table-dark td {
+    color: #f8f9fa; /* Color del texto */
+  }
+  .table-rounded {
+    border-radius: 15px; /* Bordes redondeados */
+    overflow: hidden;    /* Evita que el contenido sobresalga */
+  }
+  

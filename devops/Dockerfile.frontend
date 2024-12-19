@@ -1,0 +1,22 @@
+# Usa una imagen base para Node.js
+FROM node:18 as build
+
+# Crea el directorio de trabajo
+WORKDIR /app
+
+# Copia los archivos necesarios
+# Copia los archivos necesarios
+COPY package*.json ./  
+COPY angular.json ./   
+COPY src ./src         
+# Instala las dependencias y construye la aplicación
+RUN npm install && npm run build
+
+# Usa una imagen para servir el frontend
+FROM nginx:alpine
+COPY --from=build /app/dist/inventory-frontend /usr/share/nginx/html
+
+# Exponer el puerto 80 para el frontend
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

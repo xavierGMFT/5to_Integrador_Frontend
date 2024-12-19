@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Exit, ExitService } from '../../services/exit.service';
 import { Product, ProductService } from '../../services/product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-exit-form',
@@ -30,8 +31,14 @@ export class ExitFormComponent implements OnInit {
 
   saveExit(): void {
     if (this.exit.product && this.exit.quantity) {
-      this.exitService.createExit(this.exit as Exit).subscribe(() => {
-        this.router.navigate(['/exits']);
+      this.exitService.createExit(this.exit as Exit).subscribe({
+        next: () => {
+          Swal.fire('Creado', 'La salida ha sido registrada correctamente.', 'success');
+          this.router.navigate(['/exits']);
+        },
+        error: () => {
+          Swal.fire('Error', 'No se pudo registrar la salida.', 'error');
+        },
       });
     }
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product, ProductService } from '../../services/product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-form',
@@ -8,10 +9,10 @@ import { Product, ProductService } from '../../services/product.service';
 })
 export class ProductFormComponent implements OnInit {
   product: Product = {
-    id: null, // Cambia de 0 a null
+    id: null,
     name: '',
     quantity: 0,
-    price: 0
+    price: 0,
   };
 
   constructor(
@@ -32,17 +33,23 @@ export class ProductFormComponent implements OnInit {
       // Actualizar producto existente
       this.productService.updateProduct(this.product.id, this.product).subscribe({
         next: () => {
+          Swal.fire('Actualizado', 'El producto se actualizó correctamente.', 'success');
           this.router.navigate(['/products']);
         },
-        error: (err) => console.error('Error al actualizar producto:', err),
+        error: () => {
+          Swal.fire('Error', 'No se pudo actualizar el producto.', 'error');
+        },
       });
     } else {
       // Crear nuevo producto
       this.productService.createProduct(this.product).subscribe({
         next: () => {
+          Swal.fire('Creado', 'El producto se creó correctamente.', 'success');
           this.router.navigate(['/products']);
         },
-        error: (err) => console.error('Error al crear producto:', err),
+        error: () => {
+          Swal.fire('Error', 'No se pudo crear el producto.', 'error');
+        },
       });
     }
   }

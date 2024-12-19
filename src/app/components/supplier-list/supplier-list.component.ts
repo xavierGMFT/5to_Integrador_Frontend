@@ -1,6 +1,7 @@
 // src/app/components/supplier-list/supplier-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Supplier, SupplierService } from '../../services/supplier.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-supplier-list',
@@ -23,10 +24,28 @@ export class SupplierListComponent implements OnInit {
 
   deleteSupplier(id: number | null) {
     if (id === null) return;
-    if (confirm('¿Estás seguro de que deseas eliminar este proveedor?')) {
-      this.supplierService.deleteSupplier(id).subscribe(() => {
-        this.loadSuppliers();
-      });
-    }
+  
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'No podrás revertir esta acción.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.supplierService.deleteSupplier(id).subscribe({
+          next: () => {
+            this.loadSuppliers(); // Recargar la lista de proveedores
+            Swal.fire('Eliminado', 'El proveedor ha sido eliminado correctamente.', 'success');
+          },
+          error: () => {
+            Swal.fire('Error', 'No se puede eliminar este proveedor porque está relacionado con entradas de productos.', 'error');
+          },
+        });
+      }
+    });
   }
 }
